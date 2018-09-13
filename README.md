@@ -10,9 +10,9 @@ This is a sina weibo spider built by scrapy
 
 |    分支   | 特点 | 单机每日抓取量 |
 | :---: | :----: |:----: |
-| simple | 单账号 | 十万级|
-| master | 账号池 | 百万级|
-| senior | 账号池+分布式 | 千万级+ | 
+| [simple](https://github.com/nghuyong/WeiboSpider/tree/simple) | 单账号 | 十万级|
+| [master](https://github.com/nghuyong/WeiboSpider/tree/master) | 账号池 | 百万级|
+| [senior](https://github.com/nghuyong/WeiboSpider/tree/senior) | 账号池+分布式 | 千万级+ | 
 
 该项目爬取的数据字段说明，请移步:[数据字段说明与示例](./data_stracture.md)
 
