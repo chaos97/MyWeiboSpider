@@ -30,7 +30,9 @@ pip install -r requirements.txt
 除此之外，还需要安装mongodb，这个自行Google把
 
 ### 替换Cookie
-访问https://weibo.cn/，并登陆，打开浏览器的开发者模式，再次刷新
+访问https://weibo.cn/
+
+并登陆，打开浏览器的开发者模式，再次刷新
 
 ![](./images/cookie.png)
 
