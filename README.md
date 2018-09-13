@@ -17,44 +17,33 @@ This is a sina weibo spider built by scrapy
 该项目爬取的数据字段说明，请移步:[数据字段说明与示例](./data_stracture.md)
 
 ## 如何使用
-下面是master分支，也就是构建单机百万级的爬虫
-
-如果你只想用你自己的一个账号简单爬取微博，每日十万级即可，请移步simple分支
-
-如果你需要大规模爬取微博，需要单机千万级别，请移步senior分支
+下面是simple分支，也就是单账号爬取，每日十万级的抓取量
 
 ### 克隆本项目 && 安装依赖
 本项目Python版本为Python3.6
 ```bash
 git clone git@github.com:nghuyong/WeiboSpider.git
 cd WeiboSpider
+git checkout simple
 pip install -r requirements.txt
 ```
-除此之外，还需要安装mongodb和phantomjs，这个自行Google把
+除此之外，还需要安装mongodb，这个自行Google把
 
-### 购买账号
-小号购买地址(**访问需要翻墙**): http://www.xiaohao.shop/ 
+### 替换Cookie
+访问https://weibo.cn/，并登陆，打开浏览器的开发者模式，再次刷新
 
-购买普通国内手机号注册的小号即可
+![](./images/cookie.png)
 
-![](./images/xiaohao.shop.png)
-
-购买越多，sina/settings.py 中的延迟就可以越低，并发也就可以越大
-
-**将购买的账号复制到`sina/account_build/account.txt`中，格式与`account_sample.txt`保持一致**。
-
-### 构建账号池
-
-```bash
-python sina/account_build/login.py
+请将`sina/settings.py`中:
+```python
+DEFAULT_REQUEST_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0',
+    'Cookie':'OUTFOX_SEARCH_USER_ID_NCOO=1780588551.4011402; browser=d2VpYm9mYXhpYW4%3D; SCF=AsJyCasIxgS59OhHHUWjr9OAw83N3BrFKTpCLz2myUf2_vdK1UFy6Hucn5KaD7mXIoq8G25IMnTUPRRfr3U8ryQ.; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFGJINkqaLbAcTzz2isXDTA5JpX5KMhUgL.Foq0e0571hBp1hn2dJLoIp7LxKML1KBLBKnLxKqL1hnLBoMpe0ec1h5feKMR; SUB=_2A252a4N_DeRhGeBI61EV9CzPyD-IHXVVly03rDV6PUJbkdAKLRakkW1NRqYKs18Yrsf_SKnpgehmxRFUVgzXtwQO; SUHB=0U15b0sZ4CX6O4; _T_WM=0653fb2596917b052152f773a5976ff4; _WEIBO_UID=6603442333; SSOLoginState=1536482073; ALF=1539074073'
+}
 ```
-运行截图:
+Cookie字段替换成你自己的Cookie
 
-![](./images/account_build_screenshot.png)
-
-这是你的mongodb中将多一个账号表，如下所示:
-
-![](./images/account.png)
+**如果爬虫运行出现403/302，说明账号被封/cookie失效，请重新替换cookie**
 
 ### 运行爬虫
 ```bash
