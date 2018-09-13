@@ -36,7 +36,9 @@ pip install -r requirements.txt
 
 ![](./images/cookie.png)
 
-请将`sina/settings.py`中:
+复制weibo.cn这个数据包，network中的cookie值
+
+将`sina/settings.py`中:
 ```python
 DEFAULT_REQUEST_HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0',
