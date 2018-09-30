@@ -20,9 +20,6 @@ class WeiboSpider(RedisSpider):
     custom_settings = {
         'CONCURRENT_REQUESTS': 16,
         "DOWNLOAD_DELAY": 0.1,
-        "SCHEDULER": "scrapy_redis.scheduler.Scheduler",
-        "DUPEFILTER_CLASS": "scrapy_redis.dupefilter.RFPDupeFilter",
-        "SCHEDULER_PERSIST": True,
     }
     
     # 默认初始解析函数
