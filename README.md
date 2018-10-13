@@ -21,8 +21,6 @@ This is a sina weibo spider built by scrapy
 
 ## update
 - 2018/10/13 添加[微博搜索分支](https://github.com/nghuyong/WeiboSpider/tree/search)
-
-## update
 - 2018/9/30 添加布隆过滤器
 
 ## 如何使用
