@@ -17,11 +17,16 @@ This is a sina weibo spider built by scrapy
 
 该项目爬取的数据字段说明，请移步:[数据字段说明与示例](./data_stracture.md)
 
+已经在senior分支的基础上新增了[search分支](https://github.com/nghuyong/WeiboSpider/tree/search)，用于微博关键词搜索
+
+## update
+- 2018/10/13 添加[微博搜索分支](https://github.com/nghuyong/WeiboSpider/tree/search)
+
 ## update
 - 2018/9/30 添加布隆过滤器
 
 ## 如何使用
-下面是senior分支，也就是构建单机千万级别的爬虫
+下面是search分支，在senior分支基础上添加了关键词搜索功能
 
 ### 克隆本项目 && 安装依赖
 本项目Python版本为Python3.6
@@ -62,6 +67,8 @@ python sina/account_build/login.py
 
 所以首先向redis中填充初始的URL
 
+请将`sina/redis_init.py`中的 关键词 和 日期修改成你自己需要的
+
 ```bash
 python sina/redis_init.py
 ```
@@ -78,7 +85,7 @@ scrapy crawl weibo_spider
 
 导入pycharm后，也可以直接执行`sina/spider/weibo_spider.py`
 
-该爬虫是示例爬虫，将爬取 人民日报 和 新华视点 的 用户信息，全部微博，每条微博的评论，还有用户关系。
+该爬虫是示例爬虫，将爬取的是2017-07-30 到 2018-07-30 关键词为转基因的微博数据和用户数据。
 
 可以根据你的实际需求改写示例爬虫。
 
