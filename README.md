@@ -16,6 +16,13 @@ This is a sina weibo spider built by scrapy
 
 该项目爬取的数据字段说明，请移步:[数据字段说明与示例](./data_stracture.md)
 
+已经在senior分支的基础上新增了[search分支](https://github.com/nghuyong/WeiboSpider/tree/search)，用于微博关键词搜索
+
+
+## update
+- 2018/10/13 添加[微博搜索分支](https://github.com/nghuyong/WeiboSpider/tree/search)
+- 2018/9/30 添加布隆过滤器
+
 ## 如何使用
 下面是simple分支，也就是单账号爬取，每日十万级的抓取量
 
