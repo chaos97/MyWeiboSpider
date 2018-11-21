@@ -48,7 +48,10 @@ class WeiboSpider(RedisSpider):
                 tweet_item['user_id'] = user_tweet_id.group(2)
                 tweet_item['_id'] = '{}_{}'.format(user_tweet_id.group(2), user_tweet_id.group(1))
                 create_time_info = tweet_node.xpath('.//span[@class="ct"]/text()')[-1]
-                tweet_item['created_at'] = time_fix(create_time_info.split('来自')[0].strip())
+                if "来自" in create_time_info:
+                    tweet_item['created_at'] = time_fix(create_time_info.split('来自')[0].strip())
+                else:
+                    tweet_item['created_at'] = time_fix(create_time_info.strip())
 
                 like_num = tweet_node.xpath('.//a[contains(text(),"赞[")]/text()')[0]
                 tweet_item['like_num'] = int(re.search('\d+', like_num).group())
@@ -68,7 +71,7 @@ class WeiboSpider(RedisSpider):
                                   priority=1)
 
                 else:
-                    all_content = tweet_content_node.xpath('string(.)').strip('\u200b')
+                    all_content = tweet_content_node.xpath('string(.)').replace('\u200b', '').strip()
                     tweet_item['content'] = all_content
                     yield tweet_item
 
@@ -83,7 +86,7 @@ class WeiboSpider(RedisSpider):
         tree_node = etree.HTML(response.body)
         tweet_item = response.meta['item']
         content_node = tree_node.xpath('//div[@id="M_"]//span[@class="ctt"]')[0]
-        all_content = content_node.xpath('string(.)').strip('\u200b')
+        all_content = content_node.xpath('string(.)').replace('\u200b', '').strip()
         tweet_item['content'] = all_content
         yield tweet_item
 
