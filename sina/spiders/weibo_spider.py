@@ -72,7 +72,7 @@ class WeiboSpider(RedisSpider):
 
                 else:
                     all_content = tweet_content_node.xpath('string(.)').replace('\u200b', '').strip()
-                    tweet_item['content'] = all_content
+                    tweet_item['content'] = all_content[1:]
                     yield tweet_item
 
                 yield Request(url="https://weibo.cn/{}/info".format(tweet_item['user_id']),
@@ -87,7 +87,7 @@ class WeiboSpider(RedisSpider):
         tweet_item = response.meta['item']
         content_node = tree_node.xpath('//div[@id="M_"]//span[@class="ctt"]')[0]
         all_content = content_node.xpath('string(.)').replace('\u200b', '').strip()
-        tweet_item['content'] = all_content
+        tweet_item['content'] = all_content[1:]
         yield tweet_item
 
     # 默认初始解析函数
