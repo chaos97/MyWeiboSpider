@@ -151,7 +151,7 @@ class WeiboSpider(RedisSpider):
 
                 else:
                     all_content = tweet_content_node.xpath('string(.)').replace('\u200b', '').strip()
-                    tweet_item['content'] = all_content
+                    tweet_item['content'] = all_content[1:]
                     yield tweet_item
 
                 # 抓取该微博的评论信息
@@ -167,7 +167,7 @@ class WeiboSpider(RedisSpider):
         tweet_item = response.meta['item']
         content_node = tree_node.xpath('//div[@id="M_"]//span[@class="ctt"]')[0]
         all_content = content_node.xpath('string(.)').replace('\u200b', '').strip()
-        tweet_item['content'] = all_content
+        tweet_item['content'] = all_content[1:]
         yield tweet_item
 
     def parse_follow(self, response):
