@@ -15,7 +15,7 @@ TEMPLATES_FOLDER = os.getcwd() + '/sina/account_build/templates/'
 
 class WeiboLogin():
     def __init__(self, username, password):
-        os.system('pkill -f phantom')
+        # os.system('pkill -f phantom')
         self.url = 'https://passport.weibo.cn/signin/login?entry=mweibo&r=https://weibo.cn/'
         self.browser = webdriver.PhantomJS()
         self.browser.set_window_size(1050, 840)

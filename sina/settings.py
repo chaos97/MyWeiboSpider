@@ -15,14 +15,16 @@ DEFAULT_REQUEST_HEADERS = {
 
 CONCURRENT_REQUESTS = 16
 
-DOWNLOAD_DELAY = 0.1
+DOWNLOAD_DELAY = 1
 
 DOWNLOADER_MIDDLEWARES = {
     'weibo.middlewares.UserAgentMiddleware': None,
     'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': None,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': None,
-    'sina.middlewares.CookieMiddleware': 300,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware':None,
+    'sina.middlewares.CookieMiddleware': 554,
     'sina.middlewares.RedirectMiddleware': 200,
+    'sina.middlewares.ProxyMiddleware':555,
 }
 
 ITEM_PIPELINES = {
@@ -33,4 +35,7 @@ ITEM_PIPELINES = {
 
 LOCAL_MONGO_HOST = '127.0.0.1'
 LOCAL_MONGO_PORT = 27017
-DB_NAME = 'Sina'
+DB_NAME = 'Sina_proxy'
+
+# address to get random ip
+PROXY_URL = 'http://localhost:5555/random'
