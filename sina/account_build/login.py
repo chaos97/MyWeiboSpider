@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
+import requests
 
 sys.path.append(os.getcwd())
 from sina.settings import LOCAL_MONGO_HOST, LOCAL_MONGO_PORT, DB_NAME
@@ -15,8 +16,16 @@ TEMPLATES_FOLDER = os.getcwd() + '/sina/account_build/templates/'
 
 class WeiboLogin():
     def __init__(self, username, password):
-        os.system('pkill -f phantom')
+        # os.system('pkill -f phantom')
+        # response = requests.get('http://localhost:5555/random')
+        # if response.status_code == 200:
+        #     proxy = response.text
+        # service_args = [
+        #     '--proxy={}'.format(proxy),
+        #     '--proxy-type=https'
+        # ]
         self.url = 'https://passport.weibo.cn/signin/login?entry=mweibo&r=https://weibo.cn/'
+        # self.browser = webdriver.PhantomJS(service_args=service_args)
         self.browser = webdriver.PhantomJS()
         self.browser.set_window_size(1050, 840)
         self.wait = WebDriverWait(self.browser, 20)
